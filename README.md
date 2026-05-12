@@ -1,4 +1,4 @@
-[![CI](https://github.com/Nyzeix/tp-tests-applicatifs/actions/workflows/ci.yml/badge.svg)](https://github.com/Nyzeix/tp-tests-applicatifs/actions/workflows/ci.yml)
+STATUS WORKFLOW: [![CI](https://github.com/Nyzeix/tp-tests-applicatifs/actions/workflows/ci.yml/badge.svg)](https://github.com/Nyzeix/tp-tests-applicatifs/actions/workflows/ci.yml)
 
 # TP Tests Applicatifs
 
@@ -236,3 +236,15 @@ Coche cette mini-checklist avant de remettre ton lien GitHub :
 | Flaky test | Test qui passe ou échoue de façon aléatoire (mauvais, à corriger) |
 
 Bon TP.
+
+## Ce que j'ai appris
+
+La rédaction de workflow GitHub.
+
+[x] Les tests passent en local
+[x] Le bogue 001 est corrigés, ses tests de régressions sont passés en vert
+[x] Chaque TODO ELEVE a été remplacé (les commentaires sont toujours là mais le travail est fait) par au moins 1 test.
+[x] La chaîne d'intégration continu est verte sur GitHub.
+[x] Le badge est présent dans le README (au début)
+[x] La section ce que j'ai appris est rédigé.
+[x] Au moins 10 commit lisible, en convention.
