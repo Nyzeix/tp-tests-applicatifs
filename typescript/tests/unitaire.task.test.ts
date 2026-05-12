@@ -38,5 +38,26 @@ describe("Task (unitaire)", () => {
     expect(d.createdAt).toBeDefined();
   });
 
+
   // TODO ELEVE : ajoutez au moins 2 tests unitaires supplementaires ici.
+  it("A une description vide par defaut", () => {
+    const tache = new Task({ id: 2, title: "Tache sans description" });
+    expect(tache.description).toBe("");
+  });
+
+  it("Respecte l'ordre low < medium < high", () => {
+    const ordre: Record<"low" | "medium" | "high", number> = { low: 1, medium: 2, high: 3 };
+
+    const low = new Task({ id: 1, title: "A", priority: "low" });
+    const medium = new Task({ id: 2, title: "B", priority: "medium" });
+    const high = new Task({ id: 3, title: "C", priority: "high" });
+
+    expect(ordre[low.priority]).toBeLessThan(ordre[medium.priority]);
+    expect(ordre[medium.priority]).toBeLessThan(ordre[high.priority]);
+  });
+
+  it("Date au format ISO", () => {
+    const tache = new Task({ id: 3, title: "Verifier date" });
+    expect(Number.isNaN(Date.parse(tache.createdAt))).toBe(false);
+  });
 });
