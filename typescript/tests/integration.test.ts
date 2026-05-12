@@ -47,4 +47,34 @@ describe("Integration : storage + taskManager", () => {
     const nouvelle = mgr2.createTask({ title: "Suivante" });
     expect(nouvelle.id).toBe(2);
   });
+
+  it("edition puis persistance conserve la tache modifiee", () => {
+    const fichier = join(tmpDir, "taches.json");
+    const mgr = new TaskManager();
+    const tache = mgr.createTask({ title: "Tache a editer" });
+
+    mgr.updateTask(tache.id, { title: "Titre modifie" });
+    saveTasks(fichier, mgr.listTasks({ sortBy: "id" }));
+
+    const rechargees = loadTasks(fichier);
+    expect(rechargees.length).toBe(1);
+    expect(rechargees[0].id).toBe(tache.id);
+    expect(rechargees[0].title).toBe("Titre modifie");
+  });
+
+  it("filtrage status done fonctionne apres rechargement", () => {
+    const fichier = join(tmpDir, "taches.json");
+    const mgr = new TaskManager();
+    mgr.createTask({ title: "Tache a faire" });
+    const tacheFaite = mgr.createTask({ title: "Tache faite" });
+    mgr.markDone(tacheFaite.id);
+    saveTasks(fichier, mgr.listTasks({ sortBy: "id" }));
+
+    const mgrRecharge = new TaskManager();
+    mgrRecharge.replaceAll(loadTasks(fichier));
+    const doneTasks = mgrRecharge.listTasks({ statusFilter: "done", sortBy: "id" });
+
+    expect(doneTasks.length).toBe(1);
+    expect(doneTasks[0].title).toBe("Tache faite");
+  });
 });
