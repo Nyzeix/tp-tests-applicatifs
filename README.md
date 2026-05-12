@@ -1,3 +1,5 @@
+[![CI](https://github.com/Nyzeix/tp-tests-applicatifs/actions/workflows/ci.yml/badge.svg)](https://github.com/Nyzeix/tp-tests-applicatifs/actions/workflows/ci.yml)
+
 # TP Tests Applicatifs
 
 Mini gestionnaire de tâches implémenté en **Python (pytest)** et en **TypeScript (Vitest)**, conçu pour pratiquer les huit types de tests applicatifs sur un projet concret, puis livrer un dépôt GitHub avec une chaîne d'intégration continue (CI) verte.
