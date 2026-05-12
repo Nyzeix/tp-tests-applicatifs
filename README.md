@@ -241,10 +241,11 @@ Bon TP.
 
 La rédaction de workflow GitHub.
 
-[x] Les tests passent en local
-[x] Le bogue 001 est corrigés, ses tests de régressions sont passés en vert
-[x] Chaque TODO ELEVE a été remplacé (les commentaires sont toujours là mais le travail est fait) par au moins 1 test.
-[x] La chaîne d'intégration continu est verte sur GitHub.
-[x] Le badge est présent dans le README (au début)
-[x] La section ce que j'ai appris est rédigé.
-[x] Au moins 10 commit lisible, en convention.
+- [x] Les tests passent en local  
+- [x] Le bogue 001 est corrigés, ses tests de régressions sont passés en vert  
+- [x] Chaque TODO ELEVE a été remplacé (les commentaires sont toujours là mais le travail est fait) par au moins 1 test.  
+- [x] La chaîne d'intégration continu est verte sur GitHub.  
+- [x] Le badge est présent dans le README (au début)  
+- [x] La section ce que j'ai appris est rédigé.  
+- [x] Au moins 10 commit lisible, en convention. 
+  
