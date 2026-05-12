@@ -73,3 +73,14 @@ def test_task_avec_titre_invalide_rejete():
 # ------------------------------------------------------------------
 # TODO ELEVE : ajoutez au moins 1 test d'entree invalide supplementaire.
 # ------------------------------------------------------------------
+
+
+@pytest.mark.invalides
+def test_date_non_string_rejetee():
+    with pytest.raises(InvalidInputError):
+        validate_due_date(20261231)
+
+@pytest.mark.invalides
+def test_task_avec_priorite_invalide_rejetee():
+    with pytest.raises(InvalidInputError):
+        Task(id=2, title="Tache avec priorite invalide", priority="urgent")

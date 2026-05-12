@@ -7,9 +7,10 @@ Un cas limite, c'est la frontiere :
 """
 
 import pytest
+from src.exceptions import InvalidInputError
 from src.task import Task
 from src.task_manager import TaskManager
-from src.validators import TITLE_MAX
+from src.validators import TITLE_MAX, validate_due_date, validate_title
 
 
 @pytest.mark.cas_limites
@@ -53,3 +54,20 @@ def test_get_stats_sur_manager_vide(empty_manager):
 # Pistes : titre apres trim qui devient vide, beaucoup de taches (1000),
 # date au 29 fevrier d'une annee non bissextile.
 # ------------------------------------------------------------------
+
+@pytest.mark.cas_limites
+def test_titre_apres_trim_devient_vide_rejete():
+    with pytest.raises(InvalidInputError):
+        validate_title("   ")
+
+@pytest.mark.cas_limites
+def test_creer_1000_taches_dans_le_manager():
+    mgr = TaskManager()
+    for i in range(1000):
+        mgr.create_task(f"Tache {i}")
+    assert len(mgr.list_tasks()) == 1000
+
+@pytest.mark.cas_limites
+def test_date_29_fevrier_annee_non_bissextile_rejetee():
+    with pytest.raises(InvalidInputError):
+        validate_due_date("2021-02-29")
