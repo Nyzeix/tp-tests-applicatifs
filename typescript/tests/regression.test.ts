@@ -24,6 +24,15 @@ describe("Regressions", () => {
     expect(idsRestants).toEqual([1, 3]);
   });
 
-  // TODO ELEVE - Partie 4 :
-  // Ajoutez un 2eme test de regression qui couvre un autre scenario du meme bug.
+  it("bug-001 : deleteTask supprime aussi la derniere tache par id", () => {
+    const mgr = new TaskManager();
+    mgr.createTask({ title: "Tache id=1" });
+    mgr.createTask({ title: "Tache id=2" });
+    mgr.createTask({ title: "Tache id=3 - derniere" });
+
+    mgr.deleteTask(3);
+
+    const idsRestants = mgr.listTasks({ sortBy: "id" }).map((t) => t.id);
+    expect(idsRestants).toEqual([1, 2]);
+  });
 });

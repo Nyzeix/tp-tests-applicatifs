@@ -60,6 +60,30 @@ export class TaskManager {
     return task;
   }
 
+  updateTask(
+    taskId: number,
+    fields: {
+      title?: string;
+      description?: string;
+      priority?: Priority;
+      status?: Status;
+      dueDate?: string | null;
+    }
+  ): Task {
+    const task = this.getTask(taskId);
+    const validated = new Task({
+      ...task.toDict(),
+      ...fields,
+    });
+
+    task.title = validated.title;
+    task.description = validated.description;
+    task.priority = validated.priority;
+    task.status = validated.status;
+    task.dueDate = validated.dueDate;
+    return task;
+  }
+
   markDone(taskId: number): Task {
     const task = this.getTask(taskId);
     task.status = "done";
@@ -67,12 +91,11 @@ export class TaskManager {
   }
 
   deleteTask(taskId: number): boolean {
-    // BUG VOLONTAIRE : on traite taskId comme un INDEX au lieu d'un ID.
-    // A corriger en Partie 4 du TP avec un test de regression.
-    if (taskId < 0 || taskId >= this.tasks.length) {
+    const index = this.tasks.findIndex((t) => t.id === taskId);
+    if (index === -1) {
       throw new TaskNotFoundError(`Aucune tache trouvee avec id=${taskId}.`);
     }
-    this.tasks.splice(taskId, 1);
+    this.tasks.splice(index, 1);
     return true;
   }
 
