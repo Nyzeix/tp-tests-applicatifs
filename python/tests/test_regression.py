@@ -45,3 +45,19 @@ def test_bug_001_delete_task_supprime_par_id_pas_par_index():
 # Ajoutez un 2eme test de regression qui couvre un autre scenario
 # revelateur du meme bug. Ex : supprimer la derniere tache.
 # ------------------------------------------------------------------
+
+
+@pytest.mark.regression
+def test_bug_001_delete_task_peut_supprimer_la_derniere_tache_par_id():
+    mgr = TaskManager()
+    mgr.create_task("Tache id=1")
+    mgr.create_task("Tache id=2")
+    mgr.create_task("Tache id=3")
+
+    mgr.delete_task(3)
+
+    ids_restants = sorted(t.id for t in mgr.list_tasks(sort_by="id"))
+    assert ids_restants == [1, 2], (
+        f"Bug-001 : delete_task(3) devrait supprimer la tache id=3, "
+        f"mais il reste {ids_restants}"
+    )
