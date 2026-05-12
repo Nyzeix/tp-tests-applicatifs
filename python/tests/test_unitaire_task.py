@@ -5,6 +5,7 @@ Pattern AAA : Arrange (preparer) / Act (executer) / Assert (verifier).
 """
 
 import pytest
+from datetime import datetime
 from src.task import Task
 
 
@@ -51,3 +52,22 @@ def test_task_to_dict_renvoie_les_bons_champs():
 # Idees : description optionnelle, sequence priorite low<medium<high,
 # format ISO de la date.
 # ------------------------------------------------------------------
+
+
+@pytest.mark.unitaire
+def test_task_description_est_optionnelle_et_vide_par_defaut():
+    tache = Task(id=2, title="Tache sans description")
+    assert tache.description == ""
+
+
+@pytest.mark.unitaire
+def test_task_priorites_respectent_ordre_low_medium_high():
+    ordre = {"low": 1, "medium": 2, "high": 3}
+    assert ordre[Task(id=1, title="A", priority="low").priority] < ordre[Task(id=2, title="B", priority="medium").priority] < ordre[Task(id=3, title="C", priority="high").priority]
+
+
+@pytest.mark.unitaire
+def test_task_created_at_est_au_format_iso():
+    tache = Task(id=3, title="Vérifier date")
+    assert datetime.fromisoformat(tache.created_at)
+
