@@ -47,4 +47,8 @@ describe("Entrees invalides", () => {
   it("creer une Task avec titre vide est rejete", () => {
     expect(() => new Task({ id: 1, title: "" })).toThrow(InvalidInputError);
   });
+
+  it("date non-string est rejetee", () => {
+    expect(() => validateDueDate(20261231 as unknown as string)).toThrow(InvalidInputError);
+  });
 });
